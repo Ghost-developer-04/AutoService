@@ -23,6 +23,10 @@ return new class extends Migration
             $table->foreign('detail_id')->references('id')->on('details')->cascadeOnDelete();
             $table->unsignedBigInteger('worker_id')->index();
             $table->foreign('worker_id')->references('id')->on('workers')->cascadeOnDelete();
+            $table->unsignedBigInteger('location_id')->index();
+            $table->foreign('location_id')->references('id')->on('locations')->cascadeOnDelete();
+            $table->unsignedBigInteger('service_id')->index();
+            $table->foreign('service_id')->references('id')->on('services')->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
             $table->date('arrival_date');
