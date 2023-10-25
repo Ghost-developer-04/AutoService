@@ -16,9 +16,9 @@ class Location extends Model
         return $this->hasMany(Worker::class);
     }
 
-    public function detail_shops(): HasMany
+    public function details(): HasMany
     {
-        return $this->hasMany(DetailShop::class);
+        return $this->hasMany(Detail::class);
     }
 
 }

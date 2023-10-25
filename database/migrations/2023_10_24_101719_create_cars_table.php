@@ -29,8 +29,9 @@ return new class extends Migration
             $table->foreign('service_id')->references('id')->on('services')->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('car_number');
             $table->date('arrival_date');
-            $table->date('ready_date')->nullable();
+            $table->boolean('isReady');
             $table->date('departure_date')->nullable();
         });
     }

@@ -15,19 +15,14 @@ class Detail extends Model
 
     public $timestamps = false;
 
-    public function detail_shop(): BelongsTo
+    public function location(): BelongsTo
     {
-        return $this->belongsTo(DetailShop::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function detail_category(): BelongsTo
     {
         return $this->belongsTo(DetailCategory::class);
-    }
-
-    public function detail_brand(): BelongsTo
-    {
-        return $this->belongsTo(DetailBrand::class);
     }
 
     public function cars(): HasMany
