@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\DetailCategory;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,16 @@ class DetailFactory extends Factory
      */
     public function definition(): array
     {
+        $location = Location::inRandomOrder()->first();
+        $detail_category = DetailCategory::inRandomOrder()->first();
+        $name = fake()->country() . ' ' . fake()->city();
+        $slug = str($name)->slug();
+
         return [
-            //
+            'location_id' => $location->id,
+            'detail_category_id' => $detail_category->id,
+            'name' => $name,
+            'slug' => $slug,
         ];
     }
 }

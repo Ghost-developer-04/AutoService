@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('full_name');
+            $table->integer('phone_number')->nullable();
             $table->string('slug')->unique();
             $table->date('applied_for_job');
             $table->string('experience');

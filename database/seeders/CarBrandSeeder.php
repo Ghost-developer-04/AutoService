@@ -16,7 +16,7 @@ class CarBrandSeeder extends Seeder
     {
         $car_brands = [
             ['name' => 'BMW', 'series' => ['M', 'X', 'I']],
-            ['name' => 'Mercedes-Benz', 'serie' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen']],
+            ['name' => 'Mercedes-Benz', 'series' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen']],
             ['name' => 'Toyota', 'series' => ['Camry', 'Corolla', 'Avalon', 'Land Cruiser', 'Aurion', 'Rav-4',
                 'Hilux', 'Highlander', 'Crown', 'Sienna', 'Supra']],
             ['name' => 'Lexus', 'series' => ['ES', 'IS', 'LX', 'GX']],
