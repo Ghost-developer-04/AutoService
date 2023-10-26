@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\CarBrand;
-use App\Models\Detail;
+use App\Models\Client;
+use App\Models\DetailCategory;
 use App\Models\Location;
 use App\Models\Service;
 use App\Models\Worker;
@@ -16,19 +18,22 @@ class HomeController extends Controller
     {
         $locations = Location::orderBy('name')->get();
         $services = Service::orderBy('name')->get();
-        $details = Detail::with('detail_category')
-            ->orderBy('name')
+        $detail_categories = DetailCategory::orderBy('name')
             ->get();
         $car_brands = CarBrand::orderBy('name')->get();
-        $workers = Worker::orderBy('experience')->take(5)->get();
+        $workers = Worker::orderBy('experience', 'desc')->take(5)->get();
+        $cars = Car::orderBy('name')->get();
+        $clients = Client::orderBy('full_name')->get();
 
         return view('home.index')
             ->with([
                 'locations' => $locations,
                 'services' => $services,
-                'details' => $details,
+                'detail_categories' => $detail_categories,
                 'car_brands' => $car_brands,
                 'workers' => $workers,
+                'cars' => $cars,
+                'clients' => $clients,
             ]);
     }
 }

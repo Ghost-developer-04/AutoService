@@ -1,0 +1,21 @@
+
+.bg-image-1 {
+    background: url("../img/car_repair.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image-2 {
+    background: url(../img/04.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image-3 {
+    background: url(../img/05.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

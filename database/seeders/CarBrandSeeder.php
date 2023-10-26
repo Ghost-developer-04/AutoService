@@ -15,19 +15,20 @@ class CarBrandSeeder extends Seeder
     public function run(): void
     {
         $car_brands = [
-            ['name' => 'BMW', 'series' => ['M', 'X', 'I']],
-            ['name' => 'Mercedes-Benz', 'series' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen']],
+            ['name' => 'BMW', 'image' => 'Bmw-img.png', 'series' => ['M', 'X', 'I']],
+            ['name' => 'Mercedes-Benz', 'series' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen', 'image' => 'Mercedes.png']],
             ['name' => 'Toyota', 'series' => ['Camry', 'Corolla', 'Avalon', 'Land Cruiser', 'Aurion', 'Rav-4',
-                'Hilux', 'Highlander', 'Crown', 'Sienna', 'Supra']],
-            ['name' => 'Lexus', 'series' => ['ES', 'IS', 'LX', 'GX']],
-            ['name' => 'Hyundai', 'series' => ['Sonata', 'Elantra', 'Tucson', 'Santa-Fe', 'Genesis']],
-            ['name' => 'Kia', 'series' => ['Optima', 'Cadenza', 'Sorento', 'K', 'Stinger', 'Sportage', 'Carnival']],
+                'Hilux', 'Highlander', 'Crown', 'Sienna', 'Supra'], 'image' => 'Toyota.png'],
+            ['name' => 'Lexus', 'series' => ['ES', 'IS', 'LX', 'GX'], 'image' => 'Lexus.png'],
+            ['name' => 'Hyundai', 'series' => ['Sonata', 'Elantra', 'Tucson', 'Santa-Fe', 'Genesis'], 'image' => 'Hyundai.png'],
+            ['name' => 'Kia', 'series' => ['Optima', 'Cadenza', 'Sorento', 'K', 'Stinger', 'Sportage', 'Carnival'], 'image' => 'Kia.png'],
         ];
 
         foreach ($car_brands as $brand) {
             $obj = CarBrand::create([
                 'name' => $brand['name'],
                 'slug' => str($brand['name'])->slug(),
+                'image' => $brand['image'],
             ]);
 
             foreach ($brand['series'] as $serie) {
