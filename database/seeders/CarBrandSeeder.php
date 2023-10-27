@@ -15,8 +15,8 @@ class CarBrandSeeder extends Seeder
     public function run(): void
     {
         $car_brands = [
-            ['name' => 'BMW', 'image' => 'Bmw-img.png', 'series' => ['M', 'X', 'I']],
-            ['name' => 'Mercedes-Benz', 'series' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen', 'image' => 'Mercedes.png']],
+            ['name' => 'BMW', 'series' => ['M', 'X', 'I'], 'image' => 'bmw.png'],
+            ['name' => 'Mercedes-Benz', 'series' => ['ML', 'E-Class', 'S-Class', 'Gelandewagen'], 'image' => 'Mercedes.png'],
             ['name' => 'Toyota', 'series' => ['Camry', 'Corolla', 'Avalon', 'Land Cruiser', 'Aurion', 'Rav-4',
                 'Hilux', 'Highlander', 'Crown', 'Sienna', 'Supra'], 'image' => 'Toyota.png'],
             ['name' => 'Lexus', 'series' => ['ES', 'IS', 'LX', 'GX'], 'image' => 'Lexus.png'],
@@ -28,7 +28,7 @@ class CarBrandSeeder extends Seeder
             $obj = CarBrand::create([
                 'name' => $brand['name'],
                 'slug' => str($brand['name'])->slug(),
-                'image' => $brand['image'],
+                'image_1' => $brand['image']
             ]);
 
             foreach ($brand['series'] as $serie) {

@@ -20,7 +20,7 @@ class HomeController extends Controller
         $services = Service::orderBy('name')->get();
         $detail_categories = DetailCategory::orderBy('name')
             ->get();
-        $car_brands = CarBrand::orderBy('name')->get();
+        $car_brands = CarBrand::withCount('cars')->orderBy('name')->get();
         $workers = Worker::orderBy('experience', 'desc')->take(5)->get();
         $cars = Car::orderBy('name')->get();
         $clients = Client::orderBy('full_name')->get();

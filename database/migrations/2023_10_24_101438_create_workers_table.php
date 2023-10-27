@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('phone_number')->nullable();
             $table->string('slug')->unique();
             $table->date('applied_for_job');
-            $table->string('experience');
+            $table->integer('experience');
         });
     }
 

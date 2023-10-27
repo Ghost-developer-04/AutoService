@@ -1,4 +1,4 @@
-<div class="container-xl">
+<div class="container-xl g-0">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark py-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">
