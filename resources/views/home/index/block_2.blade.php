@@ -8,11 +8,11 @@
                 no matter. We can serve it!
             </div>
 
-            <div class="row row-cols-2 pt-3 g-0">
+            <div class="row row-cols-1 row-cols-md-2 pt-3 g-0">
                 @foreach($car_brands as $car_brand)
-                    <div class="col py-3">
+                    <div class="col py-3 ps-3">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-2 bg-white bg-opacity-75">
+                            <div class="col-2">
                                 <img src="{{ asset('img/'.$car_brand->image_1) }}" alt="brand-logo" class="img-fluid">
                             </div>
                             <div class="col-10">
@@ -22,6 +22,14 @@
                                 <div class="h6 fw-bold text-info">
                                     We have served {{ $car_brand->cars_count }}+ {{ $car_brand->name }} cars
                                 </div>
+                                <a href="{{ route('cars.index', ['car_brands' => $car_brand->slug]) }}"
+                                   class="text-warning
+                                text-decoration-none
+                                border-bottom
+                                border-2
+                                border-warning">
+                                    Learn More
+                                </a>
                             </div>
                         </div>
                     </div>

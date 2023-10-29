@@ -22,7 +22,7 @@ class HomeController extends Controller
             ->get();
         $car_brands = CarBrand::withCount('cars')->orderBy('name')->get();
         $workers = Worker::orderBy('experience', 'desc')->take(5)->get();
-        $cars = Car::orderBy('name')->get();
+        $cars = Car::with('car_brand')->orderBy('name')->get();
         $clients = Client::orderBy('full_name')->get();
 
         return view('home.index')

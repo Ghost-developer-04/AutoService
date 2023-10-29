@@ -9,28 +9,34 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-md-flex ms-auto">
+                <div class="d-md-flex ms-auto mt-3 mt-md-0">
                     <div class="nav-item mb-3 mb-md-0 me-md-3">
                         <a class="text-warning fw-semibold text-decoration-none" aria-current="page" href="#">About us</a>
                     </div>
                     <div class="nav-item dropdown mb-3 mb-md-0 me-md-3">
-                        <a class="text-warning fw-semibold text-decoration-none dropdown-toggle" href="#"
+                        <a class="text-warning fw-semibold text-decoration-none dropdown-toggle" href="{{ route
+                        ('services.index') }}"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Services
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             @foreach($services as $service)
-                                <li><a class="dropdown-item text-info" href="#">{{ $service->name }}</a></li>
+                                <li><a class="dropdown-item text-info" href="{{ route('services.index') }}">{{
+                                $service->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="nav-item dropdown mb-3 mb-md-0 me-md-3">
-                        <a class="text-warning fw-semibold text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="text-warning fw-semibold text-decoration-none dropdown-toggle" href="{{ route
+                        ('details.index') }}"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Details
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             @foreach($detail_categories as $detail_category)
-                                <li><a class="dropdown-item text-info" href="#">{{ $detail_category->name }}</a></li>
+                                <li><a class="dropdown-item text-info" href="{{ route('details.index') }}">{{
+                                $detail_category->name
+                                }}</a></li>
                             @endforeach
                         </ul>
                     </div>

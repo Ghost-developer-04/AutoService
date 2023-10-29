@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Car;
 use App\Models\CarBrand;
 use App\Models\Client;
 use App\Models\Detail;
@@ -31,7 +32,7 @@ class CarFactory extends Factory
         $location = Location::inRandomOrder()->first();
         $service = Service::inRandomOrder()->with('workers')->first();
         $worker = $service->workers->count() > 0 ? $service->workers->random()->id : null;
-        $name = $car_brand->name . ' ' . $car_serie->name . ' ' . fake()->city();
+        $name = $car_brand->name . ' ' . $car_serie->name;
         $arrival_date = fake()->dateTimeBetween('-1 years', 'now');
         $isReady = Carbon::now()->diffInDays($arrival_date) < 7 ? False : True;
         $departure_date = $isReady == True ? Carbon::parse($arrival_date)->addDays(2)->toDateString() : null;
@@ -46,7 +47,7 @@ class CarFactory extends Factory
             'worker_id' => $worker,
             'detail_id' => $detail_need == True ? $detail->id : null,
             'name' => $name,
-            'slug' => str($name)->slug(),
+            'slug' => str($name) . str(fake()->city())->slug(),
             'arrival_date' => $arrival_date,
             'isReady' => $isReady,
             'departure_date' => $departure_date,
