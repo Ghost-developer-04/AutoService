@@ -79,14 +79,10 @@ class CarController extends Controller
                 return $query->where('departure_date', null);
             })
             ->when(isset($f_minPrice), function ($query) use ($f_minPrice) {
-                return $query->with('service', function ($query) use ($f_minPrice) {
-                    $query->where('price', '<=', $f_minPrice);
-                });
+                return $query->where('price', '>=' , $f_minPrice);
             })
             ->when(isset($f_maxPrice), function ($query) use ($f_maxPrice) {
-                return $query->with('service', function ($query) use ($f_maxPrice) {
-                    $query->where('price', '>=', $f_maxPrice);
-                });
+                return $query->where('price', '<=' , $f_maxPrice);
             })
             ->when(isset($f_sortBy), function ($query) use ($f_sortBy) {
                 if ($f_sortBy == 'low-to-high') {

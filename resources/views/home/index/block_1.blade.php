@@ -30,7 +30,7 @@
                             <i class="bi bi-car-front text-danger h3"></i>
                         </div>
                         <div class="text-center text-light h5">
-                            {{ $cars->count() }}+ cars were repaired in a year
+                            {{ $cars->count() }}+ cars were repaired in a month
                         </div>
                     </div>
                     <div class="col mt-3 mt-lg-0">
