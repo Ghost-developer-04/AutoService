@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('detail_category_id')->references('id')->on('detail_categories')->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->unsignedDouble('price');
+            $table->integer('stock');
         });
     }
 

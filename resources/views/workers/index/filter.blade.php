@@ -9,7 +9,7 @@
         <select class="form-select" id="location" name="location">
             <option value selected>-</option>
             @foreach($locations as $location)
-                <option value="{{ $location->name }}" {{ $location->name == $f_location ? 'selected':'' }}>
+                <option value="{{ $location->slug }}" {{ $location->slug == $f_location ? 'selected':'' }}>
                     {{ $location->name }}
                 </option>
             @endforeach
@@ -17,31 +17,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="car_brand" class="form-label">car_brand</label>
-        <select class="form-select" id="car_brand" name="car_brand">
-            <option value selected>-</option>
-            @foreach($car_brands as $car_brand)
-                <option value="{{ $car_brand->slug }}" {{ $car_brand->slug == $f_car_brand? 'selected':'' }}>
-                    {{ $car_brand->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label for="car_serie" class="form-label">car_serie</label>
-        <select class="form-select" id="car_serie" name="car_serie">
-            <option value selected>-</option>
-            @foreach($car_series as $car_serie)
-                <option value="{{ $car_serie->slug }}" {{ $car_serie->slug == $f_car_serie ? 'selected':'' }}>
-                    {{ $car_serie->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label for="service" class="form-label">service</label>
+        <label for="service" class="form-label">Service</label>
         <select class="form-select" id="service" name="service">
             <option value selected>-</option>
             @foreach($services as $service)
@@ -50,16 +26,6 @@
                 </option>
             @endforeach
         </select>
-    </div>
-
-    <div class="mb-3">
-        <label for="minPrice" class="form-label">Min price</label>
-        <input type="number" class="form-control" id="minPrice" name="minPrice" value="{{ $f_minPrice }}">
-    </div>
-
-    <div class="mb-3">
-        <label for="maxPrice" class="form-label">Max price</label>
-        <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="{{ $f_maxPrice }}">
     </div>
 
     <div class="mb-3">

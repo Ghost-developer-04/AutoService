@@ -48,28 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Facades\View::composer('app.filter', function (View $view) {
-            $locstions = Location::orderBy('name')
-                ->get();
 
-            $services = Service::orderBy('name')
-                ->get();
-
-            $car_brands = CarBrand::orderBy('name')->get();
-
-            $car_series = CarSerie::orderBy('name')->get();
-
-            $workers = Worker::orderBy('full_name')->get();
-
-            $detail_categories = DetailCategory::orderBy('name')->get();
-
-            $view->with([
-                'detail_categories' => $detail_categories,
-                'services' => $services,
-                'locations' => $locstions,
-                'car_brands' => $car_brands,
-                'car_series' => $car_series,
-                'workers' => $workers
-            ]);
         });
     }
 }

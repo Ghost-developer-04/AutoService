@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-md-flex ms-auto mt-3 mt-md-0">
                     <div class="nav-item mb-3 mb-md-0 me-md-3">
-                        <a class="text-warning fw-semibold text-decoration-none" aria-current="page" href="#">About us</a>
+                        <a class="text-warning fw-semibold text-decoration-none" aria-current="page" href="{{ route('workers.index') }}">Workers</a>
                     </div>
                     <div class="nav-item dropdown mb-3 mb-md-0 me-md-3">
                         <a class="text-warning fw-semibold text-decoration-none dropdown-toggle" href="{{ route

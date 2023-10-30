@@ -33,10 +33,11 @@ class CarFactory extends Factory
         $service = Service::inRandomOrder()->with('workers')->first();
         $worker = $service->workers->count() > 0 ? $service->workers->random()->id : null;
         $name = $car_brand->name . ' ' . $car_serie->name;
-        $arrival_date = fake()->dateTimeBetween('-1 years', 'now');
+        $arrival_date = fake()->dateTimeBetween('-1 months', 'now');
         $isReady = Carbon::now()->diffInDays($arrival_date) < 7 ? False : True;
         $departure_date = $isReady == True ? Carbon::parse($arrival_date)->addDays(2)->toDateString() : null;
         $car_number = fake()->numberBetween(0000, 9999);
+        $price = fake()->numberBetween(50, 500);
 
         return [
             'car_brand_id' => $car_brand->id,
@@ -48,6 +49,7 @@ class CarFactory extends Factory
             'detail_id' => $detail_need == True ? $detail->id : null,
             'name' => $name,
             'slug' => str($name) . str(fake()->city())->slug(),
+            'price' => $price,
             'arrival_date' => $arrival_date,
             'isReady' => $isReady,
             'departure_date' => $departure_date,

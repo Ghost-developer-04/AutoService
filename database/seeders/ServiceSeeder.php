@@ -28,7 +28,6 @@ class ServiceSeeder extends Seeder
             Service::create([
                 'name' => $service,
                 'slug' => str($service)->slug(),
-                'price' => rand(50, 500),
             ]);
         }
     }

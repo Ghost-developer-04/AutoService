@@ -22,12 +22,17 @@ class DetailFactory extends Factory
         $detail_category = DetailCategory::inRandomOrder()->first();
         $name = fake()->country() . ' ' . fake()->city();
         $slug = str($name)->slug();
+        $price = number_format(rand(50, 5000), 2, '.', '');
+        $inStock = fake()->boolean(50);
+        $stock = $inStock == True ? rand(1, 30) : 0;
 
         return [
             'location_id' => $location->id,
             'detail_category_id' => $detail_category->id,
             'name' => $name,
             'slug' => $slug,
+            'price' => $price,
+            'stock' => $stock,
         ];
     }
 }

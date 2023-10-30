@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('car_number');
+            $table->unsignedDouble('price')->default(0);
             $table->date('arrival_date');
             $table->boolean('isReady');
             $table->date('departure_date')->nullable();

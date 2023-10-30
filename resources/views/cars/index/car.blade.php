@@ -16,7 +16,7 @@
                      class="text-decoration-none">{{ $car->car_serie->name }}</a>
             </div>
             <div class="text-danger">
-                {{ $car->service->price }} <span class="small">TMT</span>
+                {{ $car->price }} <span class="small">TMT</span>
             </div>
             <a class="text-warning text-decoration-none" href="{{ route('cars.index', ['service' => $car->service->slug]) }}">
                 {{ $car->service->name }}
