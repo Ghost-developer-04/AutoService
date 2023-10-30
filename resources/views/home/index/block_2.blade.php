@@ -22,7 +22,7 @@
                                 <div class="h6 fw-bold text-info">
                                     We have served {{ $car_brand->cars_count }}+ {{ $car_brand->name }} cars
                                 </div>
-                                <a href="{{ route('cars.index', ['car_brands' => $car_brand->slug]) }}"
+                                <a href="{{ route('cars.index', ['car_brand' => $car_brand->slug]) }}"
                                    class="text-warning
                                 text-decoration-none
                                 border-bottom
