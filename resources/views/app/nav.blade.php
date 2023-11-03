@@ -34,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             @foreach($detail_categories as $detail_category)
-                                <li><a class="dropdown-item text-info" href="{{ route('details.index') }}">{{
+                                <li><a class="dropdown-item text-info" href="{{ route('details.index', ['detail_category' => $detail_category->slug]) }}">{{
                                 $detail_category->name
                                 }}</a></li>
                             @endforeach

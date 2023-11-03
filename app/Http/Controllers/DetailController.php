@@ -20,6 +20,7 @@ class DetailController extends Controller
             'location' => 'nullable|string|max:255',
             'minPrice' => 'nullable|integer',
             'maxPrice' => 'nullable|integer',
+            'inStock' => 'nullable|boolean',
             'sortBy' => 'nullable|string|in:low-to-high,high-to-low,old-to-new'
         ]);
         $f_q = $request->has('q') ? $request->q : null;
@@ -28,6 +29,7 @@ class DetailController extends Controller
         $f_location = $request->has('location') ? $request->location : null;
         $f_minPrice = $request->has('minPrice') ? $request->minPrice : null;
         $f_maxPrice = $request->has('maxPrice') ? $request->maxPrice : null;
+        $f_inStock = $request->has('inStock') ? $request->inStock : null;
         $f_sortBy = $request->has('sortBy') ? $request->sortBy : null;
 
         $details = Detail::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
@@ -49,10 +51,13 @@ class DetailController extends Controller
                 });
             })
             ->when(isset($f_minPrice), function ($query) use ($f_minPrice) {
-                return $query->where('price', '<=', $f_minPrice);
+                return $query->where('price', '>=', $f_minPrice);
             })
             ->when(isset($f_maxPrice), function ($query) use ($f_maxPrice) {
-                return $query->where('price', '>=', $f_maxPrice);
+                return $query->where('price', '<=', $f_maxPrice);
+            })
+            ->when(isset($f_inStock), function ($query) {
+                return $query->where('stock', '>', 0);
             })
             ->when(isset($f_sortBy), function ($query) use ($f_sortBy) {
                 if ($f_sortBy == 'low-to-high') {
@@ -87,6 +92,7 @@ class DetailController extends Controller
                 'f_location' => $f_location,
                 'f_minPrice' => $f_minPrice,
                 'f_maxPrice' => $f_maxPrice,
+                'f_inStock' => $f_inStock,
                 'f_sortBy' => $f_sortBy,
             ]);
     }
@@ -96,7 +102,15 @@ class DetailController extends Controller
      */
     public function create()
     {
-        //
+        $detail_categories = DetailCategory::orderBy('name')->get();
+
+        $locations = Location::orderBy('name')->get();
+
+        return view('details.create')
+            ->with([
+                'detail_categories' => $detail_categories,
+                'locations' => $locations,
+            ]);
     }
 
     /**
@@ -104,15 +118,55 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'location' => 'required|integer|min:1',
+            'detail_category' => 'required|integer|min:1',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:1',
+        ]);
+
+        $detail = new Detail();
+        $detail->location_id = $request->location;
+        $detail->detail_category_id = $request->detail_category;
+        $detail->name = $request->name;
+        $detail->slug = str()->random(10);
+        $detail->price = round($request->price, 1);
+        $detail->save();
+
+        $detail->slug = str($detail->name)->slug() . '-' . $detail->id;
+        $detail->update();
+
+        return to_route('details.show', $detail->id)
+            ->with([
+                'success' => $detail->name . ' detail successfully created!',
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Detail $detail)
+
+    public function show($detail)
     {
-        //
+        $obj = Detail::with('location', 'detail_category')
+            ->findOrFail($detail);
+        $obj->increment('viewed');
+
+        $sameCategory = Detail::where('detail_category_id', $obj->detail_category_id)
+            ->with('location', 'detail_category')
+            ->take(6)
+            ->inRandomOrder()
+            ->get();
+
+        $sameLocation = Detail::where('location_id', $obj->location_id)
+            ->with('location', 'detail_category')
+            ->take(6)
+            ->inRandomOrder()
+            ->get();
+
+        return view('details.show')
+            ->with([
+                'obj' => $obj,
+                'sameCategory' => $sameCategory,
+                'sameLocation' => $sameLocation,
+            ]);
     }
 
     /**
@@ -120,7 +174,17 @@ class DetailController extends Controller
      */
     public function edit(Detail $detail)
     {
-        //
+        $detail_categories = DetailCategory::orderBy('name')
+            ->get();
+        $locations = Location::orderBy('name')
+            ->get();
+
+        return view('details.edit')
+            ->with([
+                'obj' => $detail,
+                'detail_categories' => $detail_categories,
+                'locations' => $locations,
+            ]);
     }
 
     /**
@@ -128,7 +192,25 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
-        //
+        $request->validate([
+            'location' => 'required|integer|min:1',
+            'detail_category' => 'required|integer|min:1',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:1',
+        ]);
+
+        $detail->location_id = $request->location;
+        $detail->detail_category_id = $request->detail_category;
+        $detail->name = $request->name;
+        $detail->slug = str($detail->name)->slug() . '-' . $detail->id;
+        $detail->price = round($request->price, 1);
+
+        $detail->update();
+
+        return to_route('details.show', $detail->id)
+            ->with([
+                'success' => $detail->name . ' detail successfully edited!',
+            ]);
     }
 
     /**
@@ -136,6 +218,12 @@ class DetailController extends Controller
      */
     public function destroy(Detail $detail)
     {
-        //
+        $detailName = $detail->name;
+        $detail->delete();
+
+        return to_route('details.index')
+            ->with([
+                'success' => $detailName . ' detail successfully deleted!',
+            ]);
     }
 }

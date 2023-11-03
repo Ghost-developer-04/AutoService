@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') {{ $obj->name }} | Products | PC @endsection
+@section('title') {{ $obj->name }} | Cars | AutoService @endsection
 @section('main')
     <div class="container-xl my-4">
         <div class="row g-3 g-sm-4">

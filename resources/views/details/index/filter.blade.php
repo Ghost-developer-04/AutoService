@@ -38,6 +38,13 @@
         <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="{{ $f_maxPrice }}">
     </div>
 
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="1" id="inStock" name="inStock" {{ $f_inStock ? 'checked':'' }}>
+        <label class="form-check-label" for="inStock">
+            In Stock
+        </label>
+    </div>
+
     <div class="mb-3">
         <label for="sortBy" class="form-label">Sort By</label>
         <select class="form-select" id="sortBy" name="sortBy">
