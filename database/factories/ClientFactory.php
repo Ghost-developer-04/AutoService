@@ -19,9 +19,8 @@ class ClientFactory extends Factory
         $first_name = fake()->firstName();
         $last_name = fake()->lastName();
         $full_name = $first_name . ' ' . $last_name;
+        $password = bcrypt('AutoService');
         $phone_number = fake()->numberBetween(61000000, 66000000);
-        $hasBonus = fake()->boolean(50);
-        $cash_in_bonus = $hasBonus == True ? fake()->randomFloat(1, 0, 1000) : null;
         $slug = str($full_name)->slug();
 
 
@@ -29,9 +28,8 @@ class ClientFactory extends Factory
             'first_name' => $first_name,
             'last_name' => $last_name,
             'full_name' => $full_name,
+            'password' => $password,
             'phone_number' => $phone_number,
-            'bonus_status' => $hasBonus,
-            'cash_in_bonus' => $cash_in_bonus,
             'slug' => $slug,
         ];
     }

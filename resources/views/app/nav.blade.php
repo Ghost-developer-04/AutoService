@@ -41,7 +41,7 @@
                         </ul>
                     </div>
                     <div class="text-warning fw-semibold text-decoration-none me-1">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" href="{{ route('login') }}">
                             <i class="bi bi-person-add me-1"></i>login
                         </a>
                     </div>

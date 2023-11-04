@@ -31,6 +31,9 @@
                                     class="text-decoration-none">{{ $obj->detail_category->name }}</a>
                         </div>
                         <div class="mb-1">
+                            Viewed: {{ $obj->viewed }}
+                        </div>
+                        <div class="mb-1">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque earum ea non, voluptatem eos
                             cumque animi dolorem possimus repellat ullam, asperiores voluptas mollitia ratione?
                             Reiciendis numquam, eligendi, deserunt architecto perferendis voluptatem nulla adipisci nisi

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') {{ $obj->full_name }} | Products | PC @endsection
+@section('title') {{ $obj->username }} | Products | PC @endsection
 @section('main')
     <div class="container-xl my-4">
         <div class="row g-3 g-sm-4">
@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="mb-1">
-                            Name: {{ $obj->full_name }}
+                            Name: {{ $obj->username }}
                         </div>
                         <div class="mb-1">
                             Location: <a href="{{ route('workers.index', ['location' => $obj->location->slug]) }}"
