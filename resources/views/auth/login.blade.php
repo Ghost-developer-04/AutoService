@@ -10,8 +10,9 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" name="full_name" value="{{ old('full_name') }}" required>
+                                <label for="phone_number" class="form-label">Phone Number</label>
+                                <input type="number" class="form-control @error('phone_number') is-invalid @enderror"
+                                       id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required>
                                 @error('full_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

@@ -26,14 +26,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" name="full_name" value="{{ old('full_name') }}" required>
-                                @error('full_name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" required>
                                 @error('password')

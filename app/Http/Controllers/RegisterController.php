@@ -23,18 +23,23 @@ class RegisterController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'full_name' => 'required|string|max:255|lowercase|unique:' . Client::class,
             'password' => 'required|confirmed', Password::default(),
             'phone_number' => 'required|integer|gte:61000000|lte:66000000'
         ]);
 
+        $full_name = $request->first_name . ' ' . $request->last_name;
+
         $client = Client::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'full_name' => $request->full_name,
+            'full_name' => ucwords($full_name),
             'password' => $request->password,
-            'phone_number' => $request->phone_number
+            'phone_number' => $request->phone_number,
+            'slug' => rand(10, 10000),
         ]);
+
+        $client->slug = str($full_name)->slug() . '-' . $client->id;
+        $client->update();
 
         Auth::login($client);
 
