@@ -41,9 +41,12 @@ class AppServiceProvider extends ServiceProvider
             $services = Service::orderBy('name')
                 ->get();
 
+            $client = auth()->user();
+
             $view->with([
                 'detail_categories' => $detail_categories,
                 'services' => $services,
+                'client' => $client,
             ]);
         });
 

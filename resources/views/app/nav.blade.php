@@ -40,11 +40,22 @@
                             @endforeach
                         </ul>
                     </div>
+                    @auth
+                        <div class="nav-item">
+                            <a href="{{ route('personal.index', ['clients' => auth()->user()->slug]) }}" class="link-warning text-decoration-none">
+                                {{ auth()->user()->full_name }}
+                            </a>
+                            <form action="{{ route('logout') }}" method="post" id="logoutForm">
+                                @csrf
+                            </form>
+                        </div>
+                    @else
                     <div class="text-warning fw-semibold text-decoration-none me-1">
                         <a class="nav-link active" aria-current="page" href="{{ route('login') }}">
                             <i class="bi bi-person-add me-1"></i>login
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
